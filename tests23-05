@@ -1,0 +1,74 @@
+import pandas as pd
+nome_clientes = ["Vitor", "Gabriel", "Osmar", "Ricardo"]
+idades_clientes = [19, 18, 20, 24]
+cidades_clientes = ["Vicente Pires", "Vicente Pires", "Águas Claras", "Brasilinha"]
+dados_dos_clientes = {"Nome": nome_clientes, "Idade": idades_clientes, "Cidade": cidades_clientes}
+colunas = ["Nome", "Idade", "Cidade"]
+linhas = [1, 2, 3, 4]
+df = pd.DataFrame(data = dados_dos_clientes, columns = colunas, index = linhas)
+print("{}".format(df))
+
+output:
+      Nome  Idade         Cidade
+1    Vitor     19  Vicente Pires
+2  Gabriel     18  Vicente Pires
+3    Osmar     20   Águas Claras
+4  Ricardo     24     Brasilinha
+
+
+          manipulação do data frame:
+
+df.shape[1] #analisa quantas colunas possui
+output:
+3
+
+df.iloc[0] #Mostra todos os dados da posição 0 do dataframe
+output:
+Nome              Vitor
+Idade                19
+Cidade    Vicente Pires
+Name: 1, dtype: object
+
+
+
+df.iloc[0]["Nome"] #Mostra apenas o dado 'Nome' da posição 0
+output:
+Vitor
+
+df["Idade"].mean() #Calcula a media das idades
+output:
+20.25
+
+# Substituindo um novo index de dados ao DataFrame.
+df.loc[len(df)] = ["Vilma", "52", "Taguatinga"] #metodo para substituir ultimo dado do dataframe
+display(df) #comando para mostrar dataframe customizado
+output:
+
+Nome	Idade	Cidade
+1	Vitor	19	Vicente Pires
+2	Gabriel	18	Vicente Pires
+3	Osmar	20	Águas Claras
+4	Vilma	52	Taguatinga
+
+#Removendo um index de dados do data frame
+df = df.drop(df.index[-1]) #retira a ultima linha de dados do data frame
+print(df)
+output:
+
+      Nome Idade         Cidade
+1    Vitor    19  Vicente Pires
+2  Gabriel    18  Vicente Pires
+3    Osmar    20   Águas Claras
+
+
+#Adicionando um novo index de dados no data frame
+novos_dados = {"Nome": "Dave", "Idade": 40, "Cidade": "Chernobyl"}
+df.loc[len(df) + 1] = novos_dados
+print(df)
+output:
+
+      Nome Idade         Cidade
+1    Vitor    19  Vicente Pires
+2  Gabriel    18  Vicente Pires
+3    Osmar    20   Águas Claras
+4     Dave    40      Chernobyl
